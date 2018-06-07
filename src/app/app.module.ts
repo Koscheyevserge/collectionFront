@@ -68,8 +68,6 @@ import { SliderComponent } from './components/sections/slider/slider.component';
 import { SlideToggleComponent } from './components/sections/slide-toggle/slide-toggle.component';
 import { StarterComponent } from './components/sections/starter/starter.component';
 import { FileManagerComponent } from './components/widgets/filemanager/filemanager.component';
-import { QueryService } from './services/query.service';
-import { CommandService } from './services/command.service';
 
 
 @NgModule({
@@ -90,8 +88,7 @@ import { CommandService } from './services/command.service';
   ],
   providers: [
     { provide: LocationStrategy, useClass: HashLocationStrategy },
-    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlRus },
-    QueryService, CommandService
+    { provide: MatPaginatorIntl, useClass: MatPaginatorIntlRus }
   ],
   declarations: [
     AppComponent,

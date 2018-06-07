@@ -16,19 +16,5 @@
   </mat-card-content>
 </mat-card>
 <div>
-  <mat-card *ngFor="let task of filteredTasks()">
-    <mat-card-content>
-      <mat-card-title>{{task.title}}</mat-card-title>
-      <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
-      <mat-list>
-        <mat-list-item>
-          <h4 mat-line>Клиент</h4>
-          <p mat-line> {{task.client.name}} </p>
-        </mat-list-item>
-      </mat-list>
-      <mat-action-row>
-        <button mat-raised-button color="primary" (click)="showDetails(task.id)">Перейти к выполнению</button>
-      </mat-action-row>
-    </mat-card-content>
-  </mat-card>
+  <app-table ></app-table>
 </div>

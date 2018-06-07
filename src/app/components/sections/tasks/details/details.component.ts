@@ -12,8 +12,6 @@ import { Input } from '@angular/core/src/metadata/directives';
 import { Transaction } from '../../../../entities/transaction.entity';
 import { Payment } from '../../../../entities/payment.entity';
 import { Router, NavigationEnd, ActivatedRoute } from '@angular/router';
-import { QueryService } from '../../../../services/query.service';
-import { query } from '@angular/core/src/animation/dsl';
 
 export const MAT_FORMATS = {
   parse: {
@@ -78,8 +76,7 @@ export class TasksDetailsComponent implements OnInit {
     }*/
   ];
 
-  constructor(private _formBuilder: FormBuilder, private activatedRoute: ActivatedRoute,
-    private query: QueryService) {
+  constructor(private _formBuilder: FormBuilder, private activatedRoute: ActivatedRoute) {
     this.id = activatedRoute.snapshot.params['id'];
   }
 
@@ -94,7 +91,6 @@ export class TasksDetailsComponent implements OnInit {
     this.agreementsDataSource = new MatTableDataSource<Agreement>(this.task.client.agreements);
     this.transactionsDataSource = new MatTableDataSource<Transaction>(this.task.client.transactions);
     this.paymentsScheduleDataSource = new MatTableDataSource<Payment>(this.getPayments());
-    this.query.getDetailed(this.id).subscribe((tasks) => this.test = tasks);
   }
 
   getPayments() {

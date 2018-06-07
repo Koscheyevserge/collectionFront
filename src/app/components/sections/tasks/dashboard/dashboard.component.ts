@@ -7,7 +7,6 @@ import { MatMomentDateModule } from '@angular/material-moment-adapter';
 import { Contact } from '../../../../entities/contact.entity';
 import { Agreement } from '../../../../entities/agreement.entity';
 import { Router } from '@angular/router';
-import { QueryService } from '../../../../services/query.service';
 
 export const MAT_FORMATS = {
   parse: {
@@ -33,10 +32,10 @@ export const MAT_FORMATS = {
 export class TasksDashboardComponent implements OnInit {
   date = new FormControl(new Date());
   tasks: Task[];
-  constructor(private router: Router, private queryService: QueryService) { }
+  constructor(private router: Router) { }
 
   ngOnInit() {
-    this.queryService.getAll().subscribe((tasks: Task[]) => this.tasks = tasks);
+    //this.queryService.getAll().subscribe((tasks: Task[]) => this.tasks = tasks);
   }
   showDetails(id) {
     this.router.navigate(['/tasks/details', id]);
@@ -67,3 +66,10 @@ export class TasksDashboardComponent implements OnInit {
     return contact ? contact.communications[0].value : null;
   }
 }
+
+const TASK_DATA: Task[] = [
+  {
+    id: 1, date: new Date("01.01.2018"), description: "Позвонить клиенту по поводу задолженности", status: null,
+    title: "Позвонить клиенту", client: null, user: null
+  }
+]
