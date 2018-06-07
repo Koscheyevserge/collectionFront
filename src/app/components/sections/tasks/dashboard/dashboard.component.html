@@ -1,0 +1,34 @@
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Выберите диапазон</mat-card-title>
+    <mat-card-subtitle></mat-card-subtitle>
+    <mat-form-field>
+      <input matInput [matDatepicker]="from" placeholder="От" [formControl]="date">
+      <mat-datepicker-toggle matSuffix [for]="from"></mat-datepicker-toggle>
+      <mat-datepicker #from></mat-datepicker>
+    </mat-form-field>
+    <mat-form-field>
+      <input matInput [matDatepicker]="to" placeholder="До" [formControl]="date">
+      <mat-datepicker-toggle matSuffix [for]="to"></mat-datepicker-toggle>
+      <mat-datepicker #to></mat-datepicker>
+    </mat-form-field>
+    <mat-slide-toggle [checked]="true" (toggle)="showCompleted($event)" color="warn">Скрывать выполненные</mat-slide-toggle>
+  </mat-card-content>
+</mat-card>
+<div>
+  <mat-card *ngFor="let task of filteredTasks()">
+    <mat-card-content>
+      <mat-card-title>{{task.title}}</mat-card-title>
+      <mat-card-subtitle>{{task.description}}</mat-card-subtitle>
+      <mat-list>
+        <mat-list-item>
+          <h4 mat-line>Клиент</h4>
+          <p mat-line> {{task.client.name}} </p>
+        </mat-list-item>
+      </mat-list>
+      <mat-action-row>
+        <button mat-raised-button color="primary" (click)="showDetails(task.id)">Перейти к выполнению</button>
+      </mat-action-row>
+    </mat-card-content>
+  </mat-card>
+</div>

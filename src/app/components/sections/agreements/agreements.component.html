@@ -1,0 +1,13 @@
+<mat-progress-bar class="mat-elevation-z8" mode="indeterminate" *ngIf="loading"></mat-progress-bar>
+<mat-tab-group>
+  <mat-tab label="Список">
+    <app-table [dataSource]="dataSource"
+      [header]="header"
+      (headerUpdate)="headerUpdate($event)">
+    </app-table>
+  </mat-tab>
+  <mat-tab label="Детали" disabled>
+  </mat-tab>
+  <mat-tab label="Аналитика" disabled>
+  </mat-tab>
+</mat-tab-group>

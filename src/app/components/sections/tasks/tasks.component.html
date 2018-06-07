@@ -1,0 +1,16 @@
+<nav mat-tab-nav-bar>
+  <a mat-tab-link
+     routerLinkActive #dashboard="routerLinkActive"
+     [active]="dashboard.isActive"
+     routerLink="/tasks/dashboard">Все задачи</a>
+  <a mat-tab-link
+     routerLinkActive #details="routerLinkActive"
+     [active]="details.isActive"
+     [disabled]="!details.isActive"
+     routerLink="/tasks/details">Детали</a>
+  <a mat-tab-link
+     routerLinkActive #stats="routerLinkActive"
+     [active]="stats.isActive"
+     routerLink="/tasks/stats">Статистика</a>
+</nav>
+<router-outlet></router-outlet>

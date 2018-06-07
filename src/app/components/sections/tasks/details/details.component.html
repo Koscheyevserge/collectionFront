@@ -1,0 +1,203 @@
+<mat-card>
+  <mat-card-content>
+    <mat-horizontal-stepper [linear]="true">
+      <mat-step [stepControl]="resultFormGroup">
+        <form [formGroup]="resultFormGroup">
+          <ng-template matStepLabel>Выберите результат</ng-template>
+          <mat-form-field>
+            <mat-select [placeholder]="getResultName()" formControlName="resultCtrl" required>
+              <mat-optgroup *ngFor="let result of results" [label]="result.name">
+                <mat-option *ngFor="let condition of result.conditions" [value]="condition.id">
+                  {{ condition.name }}
+                </mat-option>
+              </mat-optgroup>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="warn" matStepperNext>Дальше</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step [stepControl]="actionFormGroup">
+        <form [formGroup]="actionFormGroup">
+          <ng-template matStepLabel>Выберите действие</ng-template>
+          <mat-form-field>
+            <mat-select placeholder="Действие" formControlName="actionCtrl" required>
+              <mat-option *ngFor="let condition of results[0].conditions" [value]="condition.id">
+                {{ condition.name }}
+              </mat-option>
+            </mat-select>
+          </mat-form-field>
+          <div>
+            <button mat-raised-button color="accent" matStepperPrevious>Назад</button>
+            <button mat-raised-button color="warn" matStepperNext>Дальше</button>
+          </div>
+        </form>
+      </mat-step>
+      <mat-step>
+        <ng-template matStepLabel>Готово</ng-template>
+        Для сохранения завершите задачу
+        <div>
+          <button mat-raised-button color="warn">Завершить задачу</button>
+        </div>
+      </mat-step>
+    </mat-horizontal-stepper>
+  </mat-card-content>
+</mat-card>
+<div fxLayout="row">
+  <mat-card fxFlex="2 2 auto">
+    <mat-card-content>
+      <mat-card-title>Задолженость</mat-card-title>
+      <mat-card-subtitle>По всем договорам</mat-card-subtitle>
+      <h2>
+        <mat-icon class="short-card-icon">work_off</mat-icon>
+        <span fxFlex></span>
+        12 000 грн
+      </h2>
+    </mat-card-content>
+  </mat-card>
+  <mat-card fxFlex="2 2 auto">
+    <mat-card-content>
+      <mat-card-title>Количество договоров</mat-card-title>
+      <mat-card-subtitle>Всего активных договоров</mat-card-subtitle>
+      <h2>
+        <mat-icon class="short-card-icon">work_outline</mat-icon>
+        <span fxFlex></span>
+        12 договоров
+      </h2>
+    </mat-card-content>
+  </mat-card>
+  <mat-card fxFlex="2 2 auto">
+    <mat-card-content>
+      <mat-card-title>Сумма участия</mat-card-title>
+      <mat-card-subtitle>По всем договорам</mat-card-subtitle>
+      <h2>
+        <mat-icon class="short-card-icon">work</mat-icon>
+        <span fxFlex></span>
+        2 000 000 грн
+      </h2>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Основная информация</mat-card-title>
+    <div fxLayout="row">
+      <div fxFlex="1 1 auto">
+        <div>
+          <span>Название</span>
+          <span fxFlex></span>
+          <span>{{task.client.name}}</span>
+        </div>
+        <div>
+          <span>Название</span>
+          <span fxFlex></span>
+          <span>{{task.client.name}}</span>
+        </div>
+        <div>
+          <span>Название</span>
+          <span fxFlex></span>
+          <span>{{task.client.name}}</span>
+        </div>
+      </div>
+      <span fxFlex></span>
+      <div fxFlex="1 1 auto">
+        <div>
+          <span>Название</span>
+          <span fxFlex></span>
+          <span>{{task.client.name}}</span>
+        </div>
+        <div>
+          <span>Название</span>
+          <span fxFlex></span>
+          <span>{{task.client.name}}</span>
+        </div>
+        <div>
+          <span>Название</span>
+          <span fxFlex></span>
+          <span>{{task.client.name}}</span>
+        </div>
+      </div>
+    </div>
+  </mat-card-content>
+</mat-card>
+<mat-card>
+  <mat-card-content>
+    <chart [data]="chartData"></chart>
+  </mat-card-content>
+</mat-card>
+<div fxLayout="row">
+  <mat-card fxFlex="2 2 auto">
+    <mat-card-content>
+      <mat-card-title>График платежей</mat-card-title>
+      <app-table [dataSource]="paymentsScheduleDataSource" [header]="paymentsScheduleHeader"></app-table>
+    </mat-card-content>
+  </mat-card>
+  <mat-card fxFlex="1 1 auto">
+    <mat-card-content>
+      <mat-card-title>Оплаты от клиента</mat-card-title>
+      <app-table [dataSource]="transactionsDataSource" [header]="transactionsHeader"></app-table>
+    </mat-card-content>
+  </mat-card>
+</div>
+<mat-card>
+  <mat-card-content>
+    <mat-card-title>Договоры</mat-card-title>
+    <app-table [dataSource]="agreementsDataSource" [header]="agreementsHeader"></app-table>
+  </mat-card-content>
+</mat-card>
+<div fxLayout="row">
+  <mat-card fxFlex="1 1 auto">
+    <mat-card-content>
+      <mat-card-title>Лента</mat-card-title>
+      <div class="messages-wrapper">
+        <div class="message-wrapper" fxLayout="row">
+          <div class="author-wrapper">
+            <code>Author</code>
+          </div>
+          <div class="text-wrapper">
+            Text
+          </div>
+        </div>
+        <div class="message-wrapper" fxLayout="row">
+          <div class="author-wrapper">
+            <code color="primary">Author</code>
+          </div>
+          <div class="text-wrapper">
+            Text
+          </div>
+        </div>
+        <div class="message-wrapper" fxLayout="row">
+          <div class="author-wrapper">
+            <code>Author</code>
+          </div>
+          <div class="text-wrapper">
+            Text
+          </div>
+        </div>
+      </div>
+      <mat-divider></mat-divider>
+      <form class="message-form" fxLayout="row">
+        <mat-form-field>
+          <textarea matInput placeholder="Напишите сообщение" matTextareaAutosize="false"></textarea>
+        </mat-form-field>
+      </form>
+      <mat-card-actions>
+        <button mat-raised-button color="primary">Отправить</button>
+        <button mat-raised-button>Очистить</button>
+      </mat-card-actions>
+    </mat-card-content>
+  </mat-card>
+  <mat-card fxFlex="1 1 auto">
+    <mat-card-content>
+      <mat-card-title>
+        Документы
+        <span fxFlex></span>
+        <button mat-icon-button>
+          <mat-icon>attach_file</mat-icon>
+        </button>
+      </mat-card-title>
+      <filemanager></filemanager>
+    </mat-card-content>
+  </mat-card>
+</div>

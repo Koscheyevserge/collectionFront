@@ -1,0 +1,12 @@
+<h3 mat-dialog-title>Выберите колонки</h3>
+<div mat-dialog-content>
+  <mat-selection-list>
+    <mat-list-option *ngFor="let column of newHeader" [selected]="column.display" (click)="toggle(column)">
+      {{column.name}}
+    </mat-list-option>
+  </mat-selection-list>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onYesClick()" tabindex="1">Применить</button>
+  <button mat-button (click)="onNoClick()" tabindex="2">Отменить</button>
+</div>

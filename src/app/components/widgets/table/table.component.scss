@@ -1,0 +1,32 @@
+/*.table-container {
+  display: flex;
+  flex-direction: column;
+  height: calc(100vh - 177px);
+  min-width: 300px;
+}
+.mat-toolbar {
+  min-height: 64px;
+}
+.mat-table {
+  overflow: auto;
+  max-height: 500px;
+}
+.mat-column-select {
+  overflow: visible;
+}
+.search-bar {
+  font-size: small;
+  padding-left: 20px;
+}
+.mat-sort-header-button {
+  font-size: initial;
+}
+.table-header {
+  background-color: white;
+}
+.mat-header-row {
+  position: sticky;
+  top: 0;
+  background: white;
+  z-index: 9999;
+}*/
